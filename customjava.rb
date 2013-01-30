@@ -12,11 +12,9 @@ if system("which java  > /dev/null 2>&1") == true
         customjava[:result] = true
 end
 # see if there are any procs running
-ps = `ps -C java`
-ps.each do |i|
-        if i=~ /java/
-                customjava[:result] = true
-        end
+ps = `ps -C java|grep -v "PID TTY"|wc -l`.to_i
+if ps > 0
+  customjava[:result] = true
 end
 # see if there's anything under /usr/java
 javadirs = ["none"]
