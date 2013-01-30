@@ -15,14 +15,14 @@ end
 ps = `ps -C java`
 ps.each do |i|
         if i=~ /java/
-                customjava["result"] = true
+                customjava[:result] = true
         end
 end
 # see if there's anything under /usr/java
 javadirs = ["none"]
 if File.directory?("/usr/java") == true
   if Dir.entries("/usr/java").empty? == false
-     customjava["javadirs"] = Dir.glob("/usr/java/*")
+     customjava[:javadirs] = Dir.glob("/usr/java/*")
      customjava[:result] = true
   end
 end
@@ -34,4 +34,4 @@ if ENV['JAVA_HOME'] != nil
         customjava[:result] = true
         javahome = ENV['JAVA_HOME']
 end
-customjava["java_home"] = javahome
+customjava[:java_home] = javahome
