@@ -20,10 +20,10 @@ begin
     #customjava "me"
   end
   # see if there's anything under /usr/java
-  customjava[:javadirs] = ["none"]
+  customjava[:dirs] = ["none"]
   if File.directory?("/usr/java") == true
     if Dir.entries("/usr/java").empty? == false
-     customjava[:javadirs] = Dir.glob("/usr/java/*")
+     customjava[:dirs] = Dir.glob("/usr/java/*")
      customjava[:result] = true
      #customjava "fa"
     end
